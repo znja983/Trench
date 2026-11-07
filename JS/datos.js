@@ -8,21 +8,21 @@ const baseDatosTrench = [
     name: "Sacerdote Flagelante",
     faction: "Peregrinos de la Trinchera",
     description: "Un clérigo que ha renunciado al consuelo y adopta el dolor como oración. Sus rituales de autoflagelación purifican a los suyos y aterran a los enemigos; en combate emplea reliquias sangrientas y cánticos que fortalecen a aliados y debilitan a los corruptos.",
-    image: "images/sacerdote.jpg"
+    image: "images/sacerdote.webp"
   },
   {
     id: 2,
     name: "Caballero Templario",
     faction: "Peregrinos de la Trinchera",
     description: "Veterano blindado que mezcla la disciplina monástica con el rigor marcial. Porta un estandarte profusamente marcado por oraciones y heridas antiguas; su presencia inspira defensa y castiga con espadas benditas contra lo impuro.",
-    image: "images/templario.jpg"
+    image: "images/templario.webp"
   },
   {
     id: 3,
     name: "Demonio Menor",
     faction: "Legión Hereje",
     description: "Criatura nacida de la putrefacción de las trincheras: pequeños, rápidos y voraces. No razonan como los humanos; corrompen el suelo y desatan miasmas que consumen moral y carne.",
-    image: "images/demonio.jpg"
+    image: "images/demonio.webp"
   },
   {
     id: 4,
@@ -50,14 +50,14 @@ const baseDatosTrench = [
     name: "Bruja Hereje",
     faction: "Culto del Grial Negro",
     description: "Tejedora de pactos oscuros que arraigan en rituales profanos. Su magia corrompe bendiciones, transforma aliados en sombras y convoca visiones que enloquecen a los que las contemplan.",
-    image: "images/bruja.jpg"
+    image: "images/bruja.webp"
   },
   {
     id: 8,
     name: "Bestia Infernal",
     faction: "Legión Hereje",
     description: "Abominación creada de carne soldada y huesos rotos. Incapaz de compasión, destroza formaciones y devora moral; su presencia causa que el terreno mismo rechace a los vivos.",
-    image: "images/bestia.jpg"
+    image: "images/bestia.webp"
   },
   {
     id: 9,
@@ -71,7 +71,7 @@ const baseDatosTrench = [
     name: "Asesino Maldito",
     faction: "Sultanato del Muro de Hierro",
     description: "Asesino que vendió su alma por precisión letal. Sus cuchillas envenenan no solo la sangre, sino la voluntad, haciendo que incluso la memoria del caído se corrompa.",
-    image: "images/asesino.jpg"
+    image: "images/asesino.webp"
   },
   {
     id: 11,
@@ -85,7 +85,7 @@ const baseDatosTrench = [
     name: "El Profeta Caído",
     faction: "Culto del Grial Negro",
     description: "Visionario que proclamó el fin como verdad y aprendió a saciarse de él. Sus palabras son armas y sus seguidores construyen altares de desesperación alrededor de sus prédicas.",
-    image: "images/profeta.jpg"
+    image: "images/profeta.webp"
   }
 ];
 

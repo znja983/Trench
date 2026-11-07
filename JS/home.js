@@ -22,7 +22,7 @@ function generarLista(arrayPersonajes) {
         listaHTML += `
         <div class="c-lista-personaje personaje-${id}" onclick="Detalle('${id}')">
             <p>#${id}</p>
-            <img src="${arrayPersonajes[i].image}" alt="${arrayPersonajes[i].name}" class="personaje-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23666%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22 font-size=%2214%22%3E⚔️%3C/text%3E%3C/svg%3E'">
+            <img src="${arrayPersonajes[i].image}" alt="${arrayPersonajes[i].name}" class="personaje-img" width="240" height="170" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Crect fill=%22%23666%22 width=%22100%22 height=%22100%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23fff%22 font-size=%2214%22%3E⚔️%3C/text%3E%3C/svg%3E'">
             <p>${arrayPersonajes[i].name}</p>
             <span class="faction">${arrayPersonajes[i].faction}</span>
         </div>`;
