@@ -37,6 +37,15 @@ function Home(filtro){
     // Limpiar el contenido anterior
     root.innerHTML = "";
 
+    const encabezado = document.createElement("section");
+    encabezado.className = "view-heading";
+    encabezado.innerHTML = `
+        <p>Archivo de campo</p>
+        <h1>Personajes</h1>
+        <span>Consulta a los combatientes que aún resisten en la guerra eterna.</span>
+    `;
+    root.appendChild(encabezado);
+
     //buscador
     const buscador = document.createElement("input");
     buscador.classList.add("c-buscador");

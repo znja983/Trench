@@ -2,10 +2,16 @@ function Favoritos(){
     let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
     
     const root = document.getElementById("root");
-    root.innerHTML = "";
+    root.innerHTML = `
+        <section class="view-heading">
+            <p>Archivo personal</p>
+            <h1>Favoritos</h1>
+            <span>Los combatientes que has marcado para volver a consultar.</span>
+        </section>
+    `;
     
     if(favoritos.length == 0){
-        root.innerHTML = "<div class='c-vacio'><p>No hay personajes favoritos aún. ¡Agrega algunos!</p></div>"
+        root.insertAdjacentHTML("beforeend", "<div class='c-vacio'><p>No hay personajes favoritos aún. ¡Agrega algunos!</p></div>");
     }else{
         let favHTML = "<div class='c-favoritos'><h2>Tus Personajes Favoritos</h2>";
         for (let i = 0; i < favoritos.length; i++) {
@@ -20,6 +26,6 @@ function Favoritos(){
             }
         }
         favHTML += "</div>";
-        root.innerHTML = favHTML;
+        root.insertAdjacentHTML("beforeend", favHTML);
     }
 }

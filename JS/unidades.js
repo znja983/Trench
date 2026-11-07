@@ -44,7 +44,14 @@ function AleatoriasUnidades(){
 
 
 function Capturados(){
-    document.getElementById("root").innerHTML = ""
+    const root = document.getElementById("root");
+    root.innerHTML = `
+        <section class="view-heading">
+            <p>Registro de campaña</p>
+            <h1>Unidades</h1>
+            <span>Recluta nuevos combatientes y completa tu compañía.</span>
+        </section>
+    `;
 
     //crear aleatorios
     const capturaAleatorea = document.createElement("section");
@@ -89,8 +96,8 @@ function Capturados(){
     contador.id = "contador"
 
     //añadir al elemento
-    document.getElementById("root").appendChild(contador)
-    document.getElementById("root").appendChild(boton)
-    document.getElementById("root").appendChild(capturaAleatorea)
-    document.getElementById("root").appendChild(seccionunidades)
+    root.appendChild(contador)
+    root.appendChild(boton)
+    root.appendChild(capturaAleatorea)
+    root.appendChild(seccionunidades)
 }

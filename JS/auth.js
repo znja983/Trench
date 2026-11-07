@@ -76,7 +76,7 @@ function buildAuthCard(mode) {
 
     const eyebrow = document.createElement('p');
     eyebrow.className = 'auth-eyebrow';
-    eyebrow.textContent = 'Acceso exclusivo a Trench Crusader Wiki';
+    eyebrow.textContent = 'Cuenta opcional de Trench Crusade Wiki';
 
     const title = document.createElement('h1');
     title.className = 'auth-title';
@@ -86,7 +86,7 @@ function buildAuthCard(mode) {
     subtitle.className = 'auth-subtitle';
     subtitle.textContent = mode === 'register'
         ? 'Regístrate para guardar tu experiencia y volver a entrar cuando quieras.'
-        : 'Accede a la wiki y entra directamente a la aplicación temada.';
+        : 'Inicia sesión para consultar tu perfil y tu progreso. El contenido de la wiki es público.';
 
     const form = document.createElement('form');
     form.className = 'auth-form';
@@ -119,7 +119,7 @@ function buildAuthCard(mode) {
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.className = 'auth-submit';
-    submitButton.textContent = mode === 'register' ? 'Registrarme' : 'Entrar a la app';
+    submitButton.textContent = mode === 'register' ? 'Registrarme' : 'Iniciar sesión';
 
     const toggle = document.createElement('button');
     toggle.type = 'button';
@@ -139,6 +139,14 @@ function buildAuthCard(mode) {
     }
 
     card.append(eyebrow, title, subtitle, form);
+
+    const backButton = document.createElement('button');
+    backButton.type = 'button';
+    backButton.className = 'auth-back';
+    backButton.textContent = 'Volver a la wiki';
+    backButton.addEventListener('click', () => Landing());
+    card.append(backButton);
+
     shell.append(card);
     return shell;
 }
@@ -175,10 +183,23 @@ function syncAuthControls() {
         nav.appendChild(controls);
     }
 
+    const session = getCurrentUser();
     controls.innerHTML = '';
 
-    const session = getCurrentUser();
     if (!session) {
+        const loginButton = document.createElement('button');
+        loginButton.type = 'button';
+        loginButton.className = 'nav-login';
+        loginButton.textContent = 'Iniciar sesión';
+        loginButton.addEventListener('click', () => renderAuthScreen('login'));
+
+        const registerButton = document.createElement('button');
+        registerButton.type = 'button';
+        registerButton.className = 'nav-register';
+        registerButton.textContent = 'Registrarme';
+        registerButton.addEventListener('click', () => renderAuthScreen('register'));
+
+        controls.append(loginButton, registerButton);
         return;
     }
 
@@ -193,6 +214,72 @@ function syncAuthControls() {
     button.addEventListener('click', logout);
 
     controls.append(label, button);
+}
+
+function Cuenta() {
+    const session = getCurrentUser();
+    if (!session) {
+        renderAuthScreen('login');
+        return;
+    }
+
+    const root = document.getElementById('root');
+    const user = getStoredUsers().find((item) => normalizeEmail(item.email) === normalizeEmail(session.email));
+    let favorites = [];
+    let units = [];
+
+    try {
+        const storedFavorites = JSON.parse(localStorage.getItem('favoritos'));
+        favorites = Array.isArray(storedFavorites) ? storedFavorites : [];
+    } catch (error) {
+        favorites = [];
+    }
+
+    try {
+        const storedUnits = JSON.parse(localStorage.getItem('minasUnidades'));
+        units = Array.isArray(storedUnits) ? storedUnits : [];
+    } catch (error) {
+        units = [];
+    }
+
+    const createdAt = user && user.createdAt ? new Date(user.createdAt) : null;
+    const createdLabel = createdAt && !Number.isNaN(createdAt.getTime())
+        ? new Intl.DateTimeFormat('es', { dateStyle: 'long' }).format(createdAt)
+        : 'No disponible';
+
+    root.innerHTML = `
+        <section class="account-shell" aria-labelledby="account-title">
+            <p class="section-index">Archivo personal</p>
+            <h1 id="account-title">Tu cuenta</h1>
+            <div class="account-panel">
+                <div class="account-identity">
+                    <span class="account-avatar" aria-hidden="true"></span>
+                    <div><p class="account-label">Combatiente registrado</p><h2 class="account-name"></h2></div>
+                </div>
+                <dl class="account-details">
+                    <div><dt>Correo electrónico</dt><dd class="account-email"></dd></div>
+                    <div><dt>Miembro desde</dt><dd class="account-created"></dd></div>
+                </dl>
+                <div class="account-progress">
+                    <div><span class="progress-number account-favorites"></span><span>Favoritos</span></div>
+                    <div><span class="progress-number account-units"></span><span>Unidades reclutadas</span></div>
+                </div>
+                <div class="account-actions">
+                    <button class="account-action" type="button">Ver favoritos <span aria-hidden="true">&#8594;</span></button>
+                    <button class="account-action" type="button">Ver unidades <span aria-hidden="true">&#8594;</span></button>
+                </div>
+            </div>
+        </section>
+    `;
+
+    root.querySelector('.account-name').textContent = session.name || 'Combatiente';
+    root.querySelector('.account-email').textContent = session.email || 'No disponible';
+    root.querySelector('.account-created').textContent = createdLabel;
+    root.querySelector('.account-avatar').textContent = (session.name || 'T').trim().charAt(0).toUpperCase();
+    root.querySelector('.account-favorites').textContent = favorites.length;
+    root.querySelector('.account-units').textContent = `${units.length} / ${typeof totalPersonajes === 'number' ? totalPersonajes : 0}`;
+    root.querySelectorAll('.account-action')[0].addEventListener('click', Favoritos);
+    root.querySelectorAll('.account-action')[1].addEventListener('click', Capturados);
 }
 
 async function handleLoginSubmit(event) {
@@ -289,7 +376,9 @@ async function handleRegisterSubmit(event) {
 function logout() {
     clearCurrentUser();
     syncAuthControls();
-    renderAuthScreen('login');
+    if (typeof General === 'function') {
+        General();
+    }
 }
 
 window.isAuthenticated = function () {
@@ -297,18 +386,13 @@ window.isAuthenticated = function () {
 };
 
 window.renderAuthScreen = renderAuthScreen;
+window.Cuenta = Cuenta;
 window.logout = logout;
 
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
-        if (!isAuthenticated()) {
-            renderAuthScreen('login');
-            return;
-        }
         syncAuthControls();
     });
-} else if (!isAuthenticated()) {
-    renderAuthScreen('login');
 } else {
     syncAuthControls();
 }

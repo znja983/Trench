@@ -1,17 +1,27 @@
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trench Crusader Wiki</title>
+    <title>Trench Crusade Wiki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <h1>Trench Crusader Wiki</h1>
-        <button onclick="Home()">Personajes</button>
-        <button onclick="Informativa()">Historia</button>
-        <button onclick="Capturados()">Unidades</button>
-        <button onclick="Favoritos()">Favoritos</button>
+    <nav class="site-nav">
+        <a class="site-brand" href="#" onclick="Landing(); return false;">
+            <span class="brand-mark" aria-hidden="true">&#9760;</span>
+            <span>TRENCH CRUSADE</span>
+        </a>
+        <div class="nav-links" id="wiki-nav">
+            <button onclick="openWiki('home')">Personajes</button>
+            <button onclick="openWiki('lore')">Historia</button>
+            <button onclick="openWiki('units')">Unidades</button>
+            <button onclick="openWiki('favorites')">Favoritos</button>
+            <button onclick="openWiki('account')">Tu cuenta</button>
+        </div>
+        <div id="auth-controls"></div>
     </nav>
 
     <div id="root">
@@ -25,6 +35,7 @@
     <script src="JS/unidades.js"></script>
     <script src="JS/favoritos.js"></script>
     <script src="JS/informativa.js"></script>
+    <script src="JS/landing.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", General)
