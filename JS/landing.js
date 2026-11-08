@@ -9,12 +9,47 @@ function Landing() {
             <main>
                 <section class="landing-hero" aria-labelledby="landing-title">
                     <div class="landing-hero-content">
-                        <h1 id="landing-title">Trench Crusade <span>Wiki</span></h1>
+                        <p class="landing-kicker">Frente de guerra <span aria-hidden="true"></span></p>
+                        <h1 id="landing-title">Trench Crusade <em>Wiki</em></h1>
                         <p class="landing-intro">Explora el oscuro trasfondo, conoce las facciones y descubre las reglas de esta guerra sin fin. Las puertas del Infierno están abiertas.</p>
-                        <button class="landing-cta" type="button" onclick="openWiki('home')">
-                            Entrar a la wiki <span aria-hidden="true">&#8250;</span>
-                        </button>
+                        <div class="hero-actions">
+                            <button class="landing-cta" type="button" onclick="openWiki('home')">
+                                Entrar a la wiki <span aria-hidden="true">&#8250;</span>
+                            </button>
+                            <button class="landing-ghost" type="button" onclick="if (window.renderAuthScreen) { window.renderAuthScreen('login'); } else { openWiki('account'); }">
+                                Iniciar sesión
+                            </button>
+                        </div>
+                        <p class="landing-note">Sin bloqueo de acceso para explorar la historia, las fichas y la campaña.</p>
                     </div>
+                    <div class="hero-caption" aria-hidden="true">
+                        <span>Frente occidental</span>
+                        <span>Archivo activo / 24h</span>
+                        <span>Se abre la campaña</span>
+                    </div>
+                </section>
+
+                <section class="command-strip" aria-label="Resumen del frente">
+                    <article class="command-card">
+                        <span class="command-label">facciones</span>
+                        <strong>05</strong>
+                        <p>Beligerantes activos en el conflicto.</p>
+                    </article>
+                    <article class="command-card">
+                        <span class="command-label">personajes</span>
+                        <strong>12</strong>
+                        <p>Combatientes con historia y doctrina.</p>
+                    </article>
+                    <article class="command-card">
+                        <span class="command-label">unidades</span>
+                        <strong>24</strong>
+                        <p>Modelos y líneas de combate registradas.</p>
+                    </article>
+                    <article class="command-card">
+                        <span class="command-label">front</span>
+                        <strong>∞</strong>
+                        <p>La guerra sigue sin amnistía ni descanso.</p>
+                    </article>
                 </section>
 
                 <section class="archive-section" id="archivo">
@@ -56,6 +91,58 @@ function Landing() {
                         <li><span>La guerra eterna</span><div><h3>La fe cava sus trincheras</h3><p>Fieles y malditos se enfrentan en una lucha que devora generaciones.</p></div></li>
                         <li><span>1914</span><div><h3>El frente no cede</h3><p>La humanidad resiste entre acero, pólvora y horrores que no deberían existir.</p></div></li>
                     </ol>
+                </section>
+
+                <section class="battle-brief" aria-labelledby="battle-brief-title">
+                    <div class="section-heading battle-brief-header">
+                        <p class="section-index">Manual del frente</p>
+                        <h2 id="battle-brief-title">Tres registros que cuentan la guerra</h2>
+                    </div>
+                    <div class="brief-grid">
+                        <article class="brief-card brief-card-ruins">
+                            <div class="brief-card-copy">
+                                <span>01</span>
+                                <h3>Ciudades bajo fuego</h3>
+                                <p>Las urbes muertas conservan reliquias, armas y oraciones que aún siguen ardiendo en el barro.</p>
+                            </div>
+                        </article>
+                        <article class="brief-card brief-card-saints">
+                            <div class="brief-card-copy">
+                                <span>02</span>
+                                <h3>Héroes del hambre</h3>
+                                <p>Soldados, clérigos y herejes se convierten en leyendas mientras el frente se extiende sin descanso.</p>
+                            </div>
+                        </article>
+                        <article class="brief-card brief-card-war">
+                            <div class="brief-card-copy">
+                                <span>03</span>
+                                <h3>El arte de la supervivencia</h3>
+                                <p>La guerra destruye ciudades, pero también forja rituales, tácticas y costumbres que resisten al fin.</p>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <section class="war-operations" aria-labelledby="war-operations-title">
+                    <div class="operations-copy">
+                        <p class="section-index">Operaciones activas</p>
+                        <h2 id="war-operations-title">Preparación para la siguiente ofensiva</h2>
+                        <p>El frente no se mide solo por armas, sino por voluntad, disciplina y el valor de defender lo que aún queda en pie.</p>
+                    </div>
+                    <ul class="operations-list">
+                        <li><strong>Reconocimiento</strong><span>Mapas, trincheras y rutas cortadas por la metralla.</span></li>
+                        <li><strong>Asalto</strong><span>Fuerzas de choque, explosivos y unidades que rompen la línea enemiga.</span></li>
+                        <li><strong>Resistencia</strong><span>Refuerzos, rituales y sacrificios para mantener la posición.</span></li>
+                    </ul>
+                </section>
+
+                <section class="community-banner" aria-labelledby="community-title">
+                    <div class="community-banner-copy">
+                        <p class="section-index">Archivado en la noche</p>
+                        <h2 id="community-title">Únete al cuaderno de campaña.</h2>
+                        <p>Guarda tus favoritos, sigue a tus personajes y responde a la llamada del frente en cualquier momento.</p>
+                    </div>
+                    <button class="landing-cta" type="button" onclick="openWiki('account')">Tu cuenta <span aria-hidden="true">&#8250;</span></button>
                 </section>
 
                 <section class="factions-section" id="facciones">
