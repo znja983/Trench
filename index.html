@@ -9,6 +9,43 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="blood-border blood-border--top" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L1200,0 L1200,30 Q1150,90 1100,30 Q1050,120 1000,40 Q950,20 900,50 Q850,110 800,30 Q750,140 700,40 Q650,25 600,70 Q550,125 500,35 Q450,20 400,85 Q350,130 300,30 Q250,20 200,60 Q150,105 100,25 Q50,120 0,30 Z"></path>
+        </svg>
+    </div>
+    <div class="blood-border blood-border--bottom" aria-hidden="true">
+        <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M0,0 L1200,0 L1200,30 Q1150,90 1100,30 Q1050,120 1000,40 Q950,20 900,50 Q850,110 800,30 Q750,140 700,40 Q650,25 600,70 Q550,125 500,35 Q450,20 400,85 Q350,130 300,30 Q250,20 200,60 Q150,105 100,25 Q50,120 0,30 Z"></path>
+        </svg>
+    </div>
+    <div class="ash-container" id="ash-container" aria-hidden="true"></div>
+    <div class="animation-controls">
+        <button
+            class="animation-controls-toggle"
+            id="animation-controls-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="animation-controls-panel"
+        >
+            <span aria-hidden="true">&#10038;</span> Ritmo
+        </button>
+        <section class="animation-controls-panel" id="animation-controls-panel" aria-label="Controles de animación" hidden>
+            <label for="animation-speed">Velocidad de la animación</label>
+            <output id="animation-speed-value" for="animation-speed">3.0 s</output>
+            <input id="animation-speed" type="range" min="0.5" max="6" step="0.1" value="3">
+            <span class="animation-controls-hint">Más rápido <span aria-hidden="true">&#8594;</span> Más lento</span>
+        </section>
+    </div>
+    <div class="crusade-cursor" aria-hidden="true">
+        <svg viewBox="0 0 36 36" focusable="false">
+            <path d="M16 3h4v9h9v4h-9v17h-4V16H7v-4h9z" fill="#d9d1c2" stroke="#1b0909" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M16 4h4v8h-4zM8 12h8v3H9zM18 17h2v13h-2z" fill="#a82128"/>
+            <path d="m22 8 2-2m-5 15 2-2" stroke="#e2a095" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+        <span class="cursor-blood cursor-blood--one"></span>
+        <span class="cursor-blood cursor-blood--two"></span>
+    </div>
     <nav class="site-nav">
         <a class="site-brand" href="#" onclick="Landing(); return false;">
             <span class="brand-mark" aria-hidden="true">&#9760;</span>
@@ -38,6 +75,8 @@
     <script src="JS/favoritos.js"></script>
     <script src="JS/informativa.js"></script>
     <script src="JS/landing.js"></script>
+    <script src="JS/cursor.js"></script>
+    <script src="JS/visual-effects.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", General)
