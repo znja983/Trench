@@ -689,6 +689,19 @@ body:has(.landing-page) {
     padding: 0;
 }
 
+.newsletter-page {
+    display: grid;
+    min-height: calc(100vh - 74px);
+    align-items: center;
+}
+
+.newsletter-page .newsletter-section {
+    width: min(calc(100% - 48px), 1040px);
+    min-height: 280px;
+    margin: 48px auto;
+    border: 1px solid #252222;
+}
+
 .landing-hero {
     position: relative;
     display: flex;

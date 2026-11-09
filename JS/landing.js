@@ -187,26 +187,7 @@ function Landing() {
                     <button class="landing-cta" type="button" onclick="openWiki('home')">Consultar personajes <span aria-hidden="true">&#8250;</span></button>
                 </section>
 
-                <section class="newsletter-section" aria-labelledby="newsletter-title">
-                    <div class="newsletter-copy">
-                        <p class="section-index">Boletín de guerra</p>
-                        <h2 id="newsletter-title">Recibe los últimos reportes del frente.</h2>
-                        <p>Déjanos tu correo y te enviaremos las novedades de la wiki.</p>
-                    </div>
-                    <form class="newsletter-form" id="newsletter-form">
-                        <label class="sr-only" for="newsletter-email">Tu correo electrónico</label>
-                        <input
-                            id="newsletter-email"
-                            type="email"
-                            name="user_email"
-                            placeholder="tu@correo.com"
-                            autocomplete="email"
-                            required
-                        >
-                        <button class="landing-cta" type="submit">Enlistarse</button>
-                        <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
-                    </form>
-                </section>
+                ${renderNewsletterSection()}
             </main>
             <footer class="landing-footer">
                 <a class="footer-brand" href="#" onclick="Landing(); return false;">Trench Crusade <span>Wiki</span></a>
@@ -216,10 +197,38 @@ function Landing() {
         </div>
     `;
 
+    attachNewsletterForm();
+}
+
+function renderNewsletterSection() {
+    return `
+        <section class="newsletter-section" aria-labelledby="newsletter-title">
+            <div class="newsletter-copy">
+                <p class="section-index">Boletín de guerra</p>
+                <h2 id="newsletter-title">Recibe los últimos reportes del frente.</h2>
+                <p>Déjanos tu correo y te enviaremos las novedades de la wiki.</p>
+            </div>
+            <form class="newsletter-form" id="newsletter-form">
+                <label class="sr-only" for="newsletter-email">Tu correo electrónico</label>
+                <input
+                    id="newsletter-email"
+                    type="email"
+                    name="user_email"
+                    placeholder="tu@correo.com"
+                    autocomplete="email"
+                    required
+                >
+                <button class="landing-cta" type="submit">Suscribirme</button>
+                <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    `;
+}
+
+function attachNewsletterForm() {
     const form = document.getElementById('newsletter-form');
     const status = document.getElementById('newsletter-status');
     const submitButton = form.querySelector('button[type="submit"]');
-
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
         submitButton.disabled = true;
@@ -244,9 +253,24 @@ function Landing() {
             status.textContent = 'No se pudo completar la inscripción. Inténtalo de nuevo.';
         } finally {
             submitButton.disabled = false;
-            submitButton.textContent = 'Enlistarse';
+            submitButton.textContent = 'Suscribirme';
         }
     });
+}
+
+function Newsletter() {
+    const root = document.getElementById('root');
+    if (!root) {
+        return;
+    }
+
+    root.innerHTML = `
+        <div class="landing-page newsletter-page">
+            <main>${renderNewsletterSection()}</main>
+        </div>
+    `;
+
+    attachNewsletterForm();
 }
 
 function openWiki(view) {
@@ -260,7 +284,8 @@ function openWiki(view) {
         lore: Informativa,
         units: Capturados,
         favorites: Favoritos,
-        account: Cuenta
+        account: Cuenta,
+        newsletter: Newsletter
     };
 
     if (views[view]) {
@@ -269,4 +294,5 @@ function openWiki(view) {
 }
 
 window.Landing = Landing;
+window.Newsletter = Newsletter;
 window.openWiki = openWiki;
