@@ -186,6 +186,27 @@ function Landing() {
                     </div>
                     <button class="landing-cta" type="button" onclick="openWiki('home')">Consultar personajes <span aria-hidden="true">&#8250;</span></button>
                 </section>
+
+                <section class="newsletter-section" aria-labelledby="newsletter-title">
+                    <div class="newsletter-copy">
+                        <p class="section-index">Boletín de guerra</p>
+                        <h2 id="newsletter-title">Recibe los últimos reportes del frente.</h2>
+                        <p>Déjanos tu correo y te enviaremos las novedades de la wiki.</p>
+                    </div>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <label class="sr-only" for="newsletter-email">Tu correo electrónico</label>
+                        <input
+                            id="newsletter-email"
+                            type="email"
+                            name="user_email"
+                            placeholder="tu@correo.com"
+                            autocomplete="email"
+                            required
+                        >
+                        <button class="landing-cta" type="submit">Enlistarse</button>
+                        <p class="newsletter-status" id="newsletter-status" role="status" aria-live="polite"></p>
+                    </form>
+                </section>
             </main>
             <footer class="landing-footer">
                 <a class="footer-brand" href="#" onclick="Landing(); return false;">Trench Crusade <span>Wiki</span></a>
@@ -194,6 +215,38 @@ function Landing() {
             </footer>
         </div>
     `;
+
+    const form = document.getElementById('newsletter-form');
+    const status = document.getElementById('newsletter-status');
+    const submitButton = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = 'Enviando...';
+        status.textContent = '';
+
+        try {
+            if (!window.emailjs || typeof window.emailjs.sendForm !== 'function') {
+                throw new Error('No se pudo cargar EmailJS.');
+            }
+
+            await window.emailjs.sendForm(
+                'service_jlpj0ib',
+                'template_4fauh0h',
+                form,
+                { publicKey: 't2mU6sUoKt1-Qs22G' }
+            );
+            form.reset();
+            status.textContent = '¡Inscripción exitosa! Revisa la bandeja de entrada del correo registrado.';
+        } catch (error) {
+            console.error('Error al enviar la suscripción con EmailJS:', error);
+            status.textContent = 'No se pudo completar la inscripción. Inténtalo de nuevo.';
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enlistarse';
+        }
+    });
 }
 
 function openWiki(view) {

@@ -2153,12 +2153,88 @@ body:has(.landing-page) {
     font: 12px Arial, sans-serif;
 }
 
+.newsletter-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.8fr);
+    align-items: center;
+    gap: 40px;
+    padding: 54px clamp(24px, 8vw, 112px);
+    border-top: 1px solid #252222;
+    background: #0c0b0b;
+}
+
+.newsletter-copy .section-index {
+    margin-bottom: 10px;
+    color: #bd4449;
+    font: 600 12px Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.newsletter-copy h2 {
+    margin-bottom: 8px;
+    color: #e8e5e5;
+    font: 700 28px/1.2 Georgia, 'Times New Roman', serif;
+}
+
+.newsletter-copy > p:last-child {
+    color: #a49e9e;
+    font: 14px/1.5 Arial, sans-serif;
+}
+
+.newsletter-form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 12px;
+}
+
+.newsletter-form input {
+    min-width: 0;
+    padding: 14px;
+    border: 1px solid #383333;
+    background: #141212;
+    color: #e8e5e5;
+    font: 14px Arial, sans-serif;
+}
+
+.newsletter-form input:focus {
+    border-color: #bd4449;
+    outline: 2px solid #bd444944;
+}
+
+.newsletter-form button:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.newsletter-status {
+    grid-column: 1 / -1;
+    min-height: 18px;
+    margin: 0;
+    color: #c45054;
+    font: 13px/1.4 Arial, sans-serif;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    clip-path: inset(50%);
+}
+
 .faction-art {
     object-fit: cover;
     object-position: center;
 }
 
 @media (max-width: 900px) {
+    .newsletter-section {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+
     .field-note {
         grid-template-columns: 1fr auto;
         gap: 22px;
@@ -2173,6 +2249,18 @@ body:has(.landing-page) {
 @media (max-width: 600px) {
     .chronicle-section {
         padding: 48px 20px;
+    }
+
+    .newsletter-section {
+        padding: 42px 20px;
+    }
+
+    .newsletter-copy h2 {
+        font-size: 24px;
+    }
+
+    .newsletter-form {
+        grid-template-columns: 1fr;
     }
 
     .chronicle-heading h2 {
